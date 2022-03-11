@@ -1,0 +1,32 @@
+version: "3"
+services:
+  web: 
+    image: nginx:1.21.6 
+    ports:
+      - 8080:80
+    volumes:
+      - ../src:/usr/share/nginx/html
+      - ./provision/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./provision/fcgiwrap.conf:/etc/nginx/fcgiwrap.conf 
+      - ./provision/cgi-bin:/usr/lib/cgi-bin
+      - ./provision/fcgiwrap.socket:/var/run/fcgiwrap.socket
+  api:
+    build:  ./
+    ports:
+      - 9000:9000
+    volumes:
+      - ../src:/usr/share/nginx/html
+      - ./provision/www.conf:/etc/php/7.0/fpm/pool.d/www.conf
+  db:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      - ../src/barbershop/:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+  python:
+    build: ./ 
+    ports:
+      - 8080:80
+    command: sleep 1000000s
