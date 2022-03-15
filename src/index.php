@@ -1,3 +1,3 @@
 <?php
-    phpinfo();
+    echo "the code is updated";
 ?>
