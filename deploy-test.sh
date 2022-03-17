@@ -1,16 +1,25 @@
 #!/bin/bash
 
-#*********** Don't forget to update IP address in the config.test.php ERROR Timed out!***********
-# This script grabs bitbucket updates  zips it and deploy
-#It also copies the updated config.test.php file with current IP  rename to config.php to connect to the db server 
 
-ip=127.0.0.1  #This Is App IP Address
-
+##step 1 coping the config.test.php file & renaming it to config.php inside the src folder
+##with this file you access the db server
 cp config.test.php src/config.php
-git pull origin master
-cd . && tar -zcvf ../src.tz .
+
+##step 2 grabbing the code from github,bitbucket, gitlab
+##you grab the latest changes to the code and saves it onto your computer
+git pull origin develop
+
+##step 3 zip up all the files in current directory name it src.tz then move the file to the dir 1 level up
+tar -zcvf ../src.tz .
+##move directory 1 level up
 cd ..
-docker cp  ./src.tz docker_api_1:/var/www/html/
-docker exec docker_api_1 /bin/bash -c "tar -zxvf /var/www/html/src.tz -C /var/www/html/"
+
+## step 4 copy the zip file to the container into /var/www/html
+## does not actually have to go to html we can put it in tmp if we want
+docker cp ./src.tz docker_api_1:/tmp
+
+## step 5 ssh into the container, unzip the file & put in the root directory where nginx looks for it 
+## see php-app/docker/provision/nginx.conf "root" directive
+docker exec docker_api_1 /bin/bash -c "tar -zxvf /tmp/src.tz -C /usr/share/nginx/html/"
 
 echo ===== deploy complete =====
