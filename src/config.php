@@ -1,6 +1,6 @@
 <?php
 
-$host = '127.0.0.1';
+$host = 'db';
 $dbName = 'Shop';
 $user = 'root';
 $pass = 'root';
