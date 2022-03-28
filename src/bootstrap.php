@@ -3,6 +3,7 @@
 // Connect to the database
 //
 
+ob_start();
 include 'config.php';
 
 try {
