@@ -22,5 +22,5 @@ if($database->errorInfo()[0] !== "00000") {
   return;
 }
 
-// Print the results
+// Print the results just to see if Jenkins did his job!
 echo print_r(json_encode($results, JSON_PRETTY_PRINT), true);
