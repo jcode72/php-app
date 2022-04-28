@@ -9,8 +9,9 @@ cp config.test.php src/config.php
 ##you grab the latest changes to the code and saves it onto your computer
 git pull origin develop
 
-##step 3 zip up all the files in current directory name it src.tz then move the file to the dir 1 level up
+##step 3 zip up all the files in src directory name it src.tz then move the file to the dir 1 level up
 tar -zcvf ../src.tz ./src/
+#just testing out this code 
 ##move directory 1 level up
 cd ..
 
