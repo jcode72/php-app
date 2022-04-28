@@ -10,7 +10,7 @@ cp config.test.php src/config.php
 git pull origin develop
 
 ##step 3 zip up all the files in current directory name it src.tz then move the file to the dir 1 level up
-tar -zcvf ../src.tz .
+tar -zcvf ../src.tz ./src/
 ##move directory 1 level up
 cd ..
 
