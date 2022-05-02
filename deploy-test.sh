@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 ##step 1 coping the config.test.php file & renaming it to config.php inside the src folder
 ##with this file you access the db server
 cp config.test.php src/config.php
@@ -10,10 +9,7 @@ cp config.test.php src/config.php
 git pull origin develop
 
 ##step 3 zip up all the files in src directory name it src.tz then move the file to the dir 1 level up
-tar -zcvf ../src.tz ./src/
-#just testing out this code 
-##move directory 1 level up
-cd ..
+tar -C ./src -zcvf src.tz .
 
 ## step 4 copy the zip file to the container into /var/www/html
 ## does not actually have to go to html we can put it in tmp if we want
