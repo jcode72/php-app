@@ -13,7 +13,7 @@ tar -C ./src -zcvf src.tz .
 
 ## step 4 copy the zip file to the container into /var/www/html
 ## does not actually have to go to html we can put it in tmp if we want
-docker cp ./src.tz docker_api_1:/tmp
+docker cp ./src.tz dind:/tmp
 
 ## step 5 ssh into the container, unzip the file & put in the root directory where nginx looks for it 
 ## see php-app/docker/provision/nginx.conf "root" directive
