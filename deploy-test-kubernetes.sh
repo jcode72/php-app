@@ -2,6 +2,7 @@
 
 ##step 1 coping the config.test.php file & renaming it to config.php inside the src folder
 ##with this file you access the db server
+#Kubernetes file !!! 
 cp config.test.php src/config.php
 
 ##step 2 grabbing the code from github,bitbucket, gitlab
