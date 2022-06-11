@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-php-app
+  labels:
+    app: nginx-php-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-php-app
+  template:
+    metadata:
+      labels:
+        app: nginx-php-app
+    spec:
+      imagePullSecrets:
+      - name: customer-api-repo
+      containers:
+      - name: nginx-php-app
+        image: 307997508224.dkr.ecr.us-east-1.amazonaws.com/nginx-php-app:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+        #envFrom:
+        #- secretRef:
+            #name: customer-api-secret
+        #- configMapRef:
+            #name: customer-api-config
+        #- configMapRef:
+            #name: customer-db-config
