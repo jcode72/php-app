@@ -1,3 +1,3 @@
 <?php
-    echo "the code is updated";
+    echo "the code is working";
 ?>
