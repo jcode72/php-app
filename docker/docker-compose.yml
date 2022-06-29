@@ -5,9 +5,12 @@ services:
     ports:
       - 8081:80
     volumes:
+      # @TODO update the paths because we moved the provision folder
+      # into the php folder
       - ../src:/usr/share/nginx/html
       - ./provision/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./provision/fcgiwrap.conf:/etc/nginx/fcgiwrap.conf 
+      # @TODO do we still need cgi ?
       - ./provision/cgi-bin:/usr/lib/cgi-bin
       - ./provision/fcgiwrap.socket:/var/run/fcgiwrap.socket
   api:
@@ -16,6 +19,8 @@ services:
       - 9000:9000
     volumes:
       - ../src:/usr/share/nginx/html
+      # @TODO update the paths because we moved the provision folder
+      # into the php folder
       - ./provision/www.conf:/etc/php/7.0/fpm/pool.d/www.conf
   db:
     image: mysql:5.7
